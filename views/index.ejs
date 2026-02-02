@@ -1,112 +1,595 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MentorMingle - Alumni & Hackathon Platform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>MentorMingle - Connect, Learn, Grow</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
     <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+            --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+            --warning-gradient: linear-gradient(135deg, #fd7e14 0%, #e8680d 100%);
+            --dark-gradient: linear-gradient(135deg, #343a40 0%, #212529 100%);
         }
-        .hero-section {
-            padding: 100px 0;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #6f42c1 !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #495057 !important;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            padding: 8px 20px !important;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-gradient);
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-get-started {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(111, 66, 193, 0.4);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="50" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
             text-align: center;
         }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
         }
-        .card:hover {
-            transform: translateY(-10px);
-        }
-        .btn-custom {
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-weight: 600;
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .icon-large {
-            font-size: 3rem;
-            margin-bottom: 20px;
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: #f8f9fa;
         }
-        .navbar {
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: white;
+            color: #6f42c1;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #6f42c1;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .navbar-nav {
+                text-align: center;
+                margin-top: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-graduation-cap me-2"></i>MentorMingle
+    <!-- Navigation -->
+    <nav class='navbar navbar-expand-lg navbar-light fixed-top'>
+        <div class='container'>
+            <a class='navbar-brand' href='/'>
+                <i class='fas fa-graduation-cap me-2'></i>MentorMingle
             </a>
+            <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav'>
+                <span class='navbar-toggler-icon'></span>
+            </button>
+            <div class='collapse navbar-collapse' id='navbarNav'>
+                <div class='navbar-nav mx-auto'>
+                    <a class='nav-link' href='/admin'>Admin</a>
+                    <a class='nav-link' href='/alumni'>Alumni</a>
+                    <a class='nav-link' href='/login'>Hackathon Hub</a>
+                </div>
+                <a href='/login' class='btn btn-get-started ms-3'>Get Started</a>
+            </div>
         </div>
     </nav>
 
-    <section class="hero-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold mb-4">Welcome to MentorMingle</h1>
-                    <p class="lead mb-5">Connect, Learn, and Grow with our comprehensive alumni and hackathon platform</p>
+    <!-- Hero Section -->
+    <section class='hero-section'>
+        <div class='container hero-content'>
+            <div class='row justify-content-center'>
+                <div class='col-lg-8 text-center'>
+                    <h1 class='hero-title fade-in-up'>Connect, Learn, and Grow Together</h1>
+                    <p class='hero-subtitle fade-in-up'>Join the ultimate platform for alumni networking, mentorship, and hackathon innovation. Build your career, find opportunities, and make lasting connections.</p>
+                    <div class='fade-in-up'>
+                        <a href='/login' class='btn btn-light btn-lg me-3 mb-3'>
+                            <i class='fas fa-rocket me-2'></i>Start Your Journey
+                        </a>
+                        <a href='#features' class='btn btn-outline-light btn-lg mb-3'>
+                            <i class='fas fa-info-circle me-2'></i>Learn More
+                        </a>
+                    </div>
                 </div>
             </div>
+            <div class='hero-stats fade-in-up'>
+                <div class='stat-item'>
+                    <span class='stat-number'>2000+</span>
+                    <span class='stat-label'>Active Members</span>
+                </div>
+                <div class='stat-item'>
+                    <span class='stat-number'>500+</span>
+                    <span class='stat-label'>Success Stories</span>
+                </div>
+                <div class='stat-item'>
+                    <span class='stat-number'>50+</span>
+                    <span class='stat-label'>Partner Companies</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="row g-4">
-                <!-- Admin Panel -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body text-center p-5">
-                            <i class="fas fa-cog icon-large text-primary"></i>
-                            <h3 class="card-title fw-bold mb-3">Admin Panel</h3>
-                            <p class="card-text text-muted mb-4">Manage alumni, events, and job opportunities</p>
-                            <a href="/admin" class="btn btn-primary btn-custom">
-                                <i class="fas fa-sign-in-alt me-2"></i>Admin Login
-                            </a>
+    <!-- Features Section -->
+    <section id='features' class='features-section'>
+        <div class='container'>
+            <h2 class='section-title'>Everything You Need to Succeed</h2>
+            <p class='section-subtitle'>Comprehensive platform with all the tools and resources for your professional growth</p>
+
+            <div class='row g-4'>
+                <!-- Batch Management -->
+                <div class='col-lg-4 col-md-6'>
+                    <div class='feature-card fade-in-up'>
+                        <div class='feature-icon'>
+                            <i class='fas fa-graduation-cap'></i>
                         </div>
+                        <h3 class='feature-title'>Batch Management</h3>
+                        <p class='feature-description'>Connect with alumni from your batch, share experiences, and build lifelong professional relationships with your peers.</p>
                     </div>
                 </div>
 
-                <!-- Alumni Portal -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body text-center p-5">
-                            <i class="fas fa-users icon-large text-success"></i>
-                            <h3 class="card-title fw-bold mb-3">Alumni Portal</h3>
-                            <p class="card-text text-muted mb-4">Connect with fellow alumni, view events and job opportunities</p>
-                            <a href="/alumni" class="btn btn-success btn-custom">
-                                <i class="fas fa-sign-in-alt me-2"></i>Alumni Login
-                            </a>
+                <!-- Mentorship -->
+                <div class='col-lg-4 col-md-6'>
+                    <div class='feature-card fade-in-up'>
+                        <div class='feature-icon'>
+                            <i class='fas fa-user-tie'></i>
                         </div>
+                        <h3 class='feature-title'>Expert Mentorship</h3>
+                        <p class='feature-description'>Get personalized guidance from industry experts. Choose from web development, data science, mobile apps, and more domains.</p>
                     </div>
                 </div>
 
-                <!-- Hackathon Platform -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body text-center p-5">
-                            <i class="fas fa-code icon-large text-warning"></i>
-                            <h3 class="card-title fw-bold mb-3">Hackathon Hub</h3>
-                            <p class="card-text text-muted mb-4">Join hackathons, find mentors, and showcase your projects</p>
-                            <a href="/login" class="btn btn-warning btn-custom">
-                                <i class="fas fa-sign-in-alt me-2"></i>Get Started
-                            </a>
+                <!-- Resources -->
+                <div class='col-lg-4 col-md-6'>
+                    <div class='feature-card fade-in-up'>
+                        <div class='feature-icon'>
+                            <i class='fas fa-book-open'></i>
                         </div>
+                        <h3 class='feature-title'>Learning Resources</h3>
+                        <p class='feature-description'>Access comprehensive learning materials, tutorials, and guides. Stay updated with the latest technologies and trends.</p>
+                    </div>
+                </div>
+
+                <!-- Job Opportunities -->
+                <div class='col-lg-4 col-md-6'>
+                    <div class='feature-card fade-in-up'>
+                        <div class='feature-icon'>
+                            <i class='fas fa-briefcase'></i>
+                        </div>
+                        <h3 class='feature-title'>Job Opportunities</h3>
+                        <p class='feature-description'>Discover exclusive job openings, internships, and freelance projects. Get referrals and career guidance from alumni.</p>
+                    </div>
+                </div>
+
+                <!-- Events & Hackathons -->
+                <div class='col-lg-4 col-md-6'>
+                    <div class='feature-card fade-in-up'>
+                        <div class='feature-icon'>
+                            <i class='fas fa-calendar-alt'></i>
+                        </div>
+                        <h3 class='feature-title'>Events & Hackathons</h3>
+                        <p class='feature-description'>Participate in exciting hackathons, workshops, and networking events. Showcase your skills and win prizes.</p>
+                    </div>
+                </div>
+
+                <!-- Open Source -->
+                <div class='col-lg-4 col-md-6'>
+                    <div class='feature-card fade-in-up'>
+                        <div class='feature-icon'>
+                            <i class='fas fa-code-branch'></i>
+                        </div>
+                        <h3 class='feature-title'>Open Source Hub</h3>
+                        <p class='feature-description'>Contribute to real-world projects, collaborate with developers worldwide, and build your portfolio with meaningful contributions.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- CTA Section -->
+    <section class='cta-section'>
+        <div class='container'>
+            <h2 class='cta-title'>Ready to Transform Your Career?</h2>
+            <p class='cta-subtitle'>Join thousands of professionals who are already building their future with MentorMingle</p>
+            <a href='/login' class='btn btn-cta'>
+                <i class='fas fa-arrow-right me-2'></i>Get Started Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class='footer'>
+        <div class='container'>
+            <div class='row g-4'>
+                <div class='col-lg-4'>
+                    <div class='footer-brand'>
+                        <i class='fas fa-graduation-cap me-2'></i>MentorMingle
+                    </div>
+                    <p class='mb-3'>Empowering careers through connections, learning, and innovation. Your gateway to professional success.</p>
+                    <div class='social-icons'>
+                        <a href='#' class='social-icon'><i class='fab fa-linkedin-in'></i></a>
+                        <a href='#' class='social-icon'><i class='fab fa-twitter'></i></a>
+                        <a href='#' class='social-icon'><i class='fab fa-github'></i></a>
+                        <a href='#' class='social-icon'><i class='fab fa-discord'></i></a>
+                    </div>
+                </div>
+                <div class='col-lg-2 col-md-3'>
+                    <h5 class='mb-3'>Platform</h5>
+                    <ul class='footer-links'>
+                        <li><a href='/admin'>Admin</a></li>
+                        <li><a href='/alumni'>Alumni</a></li>
+                        <li><a href='/login'>Hackathon Hub</a></li>
+                        <li><a href='/mentor'>Mentorship</a></li>
+                    </ul>
+                </div>
+                <div class='col-lg-2 col-md-3'>
+                    <h5 class='mb-3'>Resources</h5>
+                    <ul class='footer-links'>
+                        <li><a href='/opensource'>Open Source</a></li>
+                        <li><a href='/donation'>Support</a></li>
+                        <li><a href='#'>Blog</a></li>
+                        <li><a href='#'>Help Center</a></li>
+                    </ul>
+                </div>
+                <div class='col-lg-2 col-md-3'>
+                    <h5 class='mb-3'>Company</h5>
+                    <ul class='footer-links'>
+                        <li><a href='#'>About Us</a></li>
+                        <li><a href='#'>Careers</a></li>
+                        <li><a href='#'>Contact</a></li>
+                        <li><a href='#'>Privacy</a></li>
+                    </ul>
+                </div>
+                <div class='col-lg-2 col-md-3'>
+                    <h5 class='mb-3'>Connect</h5>
+                    <ul class='footer-links'>
+                        <li><a href='/login'>Sign Up</a></li>
+                        <li><a href='/login'>Login</a></li>
+                        <li><a href='#'>Newsletter</a></li>
+                        <li><a href='#'>Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class='my-4'>
+            <div class='text-center'>
+                <p class='mb-0'>&copy; 2025 MentorMingle. All rights reserved. Made with <i class='fas fa-heart text-danger'></i> for students and professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Prevent back navigation after logout
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function() {
+                window.history.pushState(null, null, window.location.href);
+            };
+        }
+    </script>
 </body>
 </html>

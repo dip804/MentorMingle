@@ -149,7 +149,14 @@ app.post("/admin", (req, res) => {
     }
     res.render("admin/admin-login", { message: "❌ Incorrect email or password." });
 });
-app.get("/admin/logout", (req, res) => { req.session.destroy(() => res.redirect("/admin")); });
+app.get("/admin/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        res.redirect("/");
+    });
+});
 app.get("/admin/dashboard", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); res.render("admin/admin-dashboard"); });
 
 app.get("/admin/alumni/add", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); res.render("admin/add-alumni", { message: "" }); });
@@ -194,7 +201,14 @@ app.post("/alumni", async (req, res) => {
         res.redirect("/alumni/dashboard");
     });
 });
-app.get("/alumni/logout", (req, res) => { req.session.destroy(() => res.redirect("/alumni")); });
+app.get("/alumni/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        res.redirect("/");
+    });
+});
 app.get("/alumni/dashboard", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); pool.query("SELECT alumni_name, email, batches FROM alumni WHERE email = $1", [req.session.alumni.email], (err, results) => { if (err) return res.send("Error"); res.render("alumni/alumni-dashboard", { alumni: results.rows[0] }); }); });
 app.get("/view-events", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); pool.query("SELECT * FROM events", (err, results) => { if (err) return res.send("Error"); res.render("alumni/view-event", { events: results.rows }); }); });
 app.get("/view-job", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); pool.query("SELECT * FROM jobs", (err, results) => { if (err) return res.send("Error"); res.render("alumni/view-job", { jobs: results.rows }); }); });
@@ -230,7 +244,14 @@ app.post("/login", async (req, res) => {
     });
 });
 app.get("/dashboard", (req, res) => { if (!req.session.user) return res.redirect("/login"); res.render("dashboard.ejs", { user: req.session.user }); });
-app.get("/logout", (req, res) => { req.session.destroy(() => res.redirect("/login")); });
+app.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        res.redirect("/");
+    });
+});
 
 // Other hackathon routes
 app.get("/mentor", (req, res) => { if (!req.session.user) return res.redirect("/login"); res.render("mentor.ejs"); });
