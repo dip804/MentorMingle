@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            width: 85%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+            position: relative;
+        }
+
+        .image-container {
+            flex: 1;
+            background: url('https://talktocolleges.com/assets/images/student_login.png') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+           
+        }
+
+        .dashboard-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #4361ee;
+            bottom: -10px;
+            left: 0;
+        }
+
+        .about {
+            font-size: 15px;
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .hover-link {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            color: #2c3e50;
+            padding: 14px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid #e6e6e6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .hover-link i {
+            margin-right: 12px;
+            font-size: 18px;
+            color: #4361ee;
+            transition: all 0.3s ease;
+        }
+
+        .hover-link:hover {
+            background: #4361ee;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        .hover-link:hover i {
+            color: white;
+        }
+
+        .logout-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            background: #ffffff;
+            color: #e74c3c;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid #e74c3c;
+        }
+
+        .logout-btn i {
+            margin-right: 10px;
+        }
+
+        .logout-btn:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e6e6e6;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4361ee;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4361ee;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                width: 90%;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .nav-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 95%;
+            }
+
+            .image-container {
+                height: 200px;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .nav-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-info {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <div class="user-name">Admin User</div>
+            </div>
+            
+            <div class="dashboard-header">
+                <h2>Admin Dashboard</h2>
+                <p class="about">Welcome to your command center. Easily manage alumni, events, and job postings from one central location designed for efficiency and ease of use.</p>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number">482</div>
+                    <div class="stat-label">Total Alumni</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Upcoming Events</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">56</div>
+                    <div class="stat-label">Active Jobs</div>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="/admin/alumni/add" class="hover-link"><i class="fas fa-user-plus"></i> Add Alumni</a></li>
+                <li><a href="/admin/alumni/view" class="hover-link"><i class="fas fa-users"></i> View Alumni</a></li>
+                <li><a href="/admin/alumni/manage" class="hover-link"><i class="fas fa-user-cog"></i> Manage Alumni</a></li>
+                <li><a href="/admin/alumni/event" class="hover-link"><i class="fas fa-calendar-plus"></i> Add Event</a></li>
+                <li><a href="/admin/event/view" class="hover-link"><i class="fas fa-calendar-alt"></i> View Events</a></li>
+                <li><a href="/admin/alumni/job" class="hover-link"><i class="fas fa-briefcase"></i> Add Jobs</a></li>
+                <li><a href="/admin/jobs" class="hover-link"><i class="fas fa-list-alt"></i> View Jobs</a></li>
+            </ul>
+            
+            <a href="/admin/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+        <div class="image-container"></div>
+    </div>
+</body>
+</html>

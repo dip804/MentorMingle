@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Batches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/YOUR_FA_KIT_CODE.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css.css">
+</head>
+<body class="bg-gray-100 flex">
+
+    <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="batches.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="batches.html"><i class="fa-solid fa-users"></i> Batches</a></li>
+            <li><a href="batches.html"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
+            <li><a href="#Mentorship"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
+            <li><a href="#Open Source"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
+            <li><a href="#Jobs"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
+            <li><a href="#Donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
+            <li><a href="#Profiles"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Content -->
+    <div class="flex-1 p-10">
+        <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-500 to-blue-500 py-4 rounded-lg shadow-md text-white">🎓 Alumni Batches</h2>
+
+        <!-- Batch Selection Dropdown -->
+        <form action="/alumni" method="get" class="text-center my-4">
+            <select name="batch" class="p-2 border rounded-lg" onchange="this.form.submit()">
+                <option value="">Select Batch</option>
+                <option value="2024" <%= selectedBatch === '2020' ? 'selected' : '' %>>2024</option>
+                <option value="2023" <%= selectedBatch === '2020' ? 'selected' : '' %>>2023</option>
+                <option value="2022" <%= selectedBatch === '2020' ? 'selected' : '' %>>2022</option>
+                <option value="2021" <%= selectedBatch === '2020' ? 'selected' : '' %>>2021</option>
+                <option value="2020" <%= selectedBatch === '2020' ? 'selected' : '' %>>2020</option>
+                <option value="2019" <%= selectedBatch === '2021' ? 'selected' : '' %>>2019</option>
+                <option value="2018" <%= selectedBatch === '2022' ? 'selected' : '' %>>2018</option>
+                <option value="2017" <%= selectedBatch === '2022' ? 'selected' : '' %>>2017</option>
+                <option value="2016" <%= selectedBatch === '2022' ? 'selected' : '' %>>2016</option>
+                <option value="2015" <%= selectedBatch === '2022' ? 'selected' : '' %>>2015</option>
+            </select>
+        </form>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <% if (alumni.length > 0) { %>
+                <% alumni.forEach(alumni => { %>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+                        <h3 class="text-xl font-bold"><%= alumni.alumni_name %></h3>
+                        <p class="text-gray-500"><%= alumni.email %></p>
+                        <p class="text-gray-700">Batch: <%= alumni.batches %></p>
+                        <p class="text-gray-700">
+                            <a href="https://chat-w-a.onrender.com/" target="_blank" rel="noopener noreferrer">Chat</a>
+                        </p>
+                        
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="text-center text-red-500 text-lg">No alumni found for this batch.</p>
+            <% } %>
+        </div>
+    </div>
+
+</body>
+</html>

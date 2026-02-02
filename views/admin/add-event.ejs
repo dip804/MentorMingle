@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Events</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h2>Add events</h2>
+
+    <% if (message) { %>
+        <p style="color: red;"><%= message %></p>
+    <% } %>
+
+    <form action="/admin/alumni/event" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" name="title" required>
+
+        <label for="type">Type:</label>
+        <input type="text" name="type" required>
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" required>
+
+        <label for="time">Time:</label>
+        <input type="text" name="time" required>
+
+        <label for="location">Location:</label>
+        <input type="text" name="location" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea>
+
+        <label for="seats">Seats:</label>
+        <input type="number" name="seats" required>
+
+        <label for="enrolled">Enrolled:</label>
+        <select name="enrolled">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
+
+        <button type="submit">Add Event</button>
+    </form>
+
+    <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>

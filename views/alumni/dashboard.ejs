@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css.css">
+
+   
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/view-events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+            <li><a href="/view-job"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
+            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
+            <li><a href="#Mentorship"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
+            <li><a href="#Open Source"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
+            <li><a href="#Donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
+            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <header>
+        <h1>Welcome, <%= alumni.alumni_name %> 🎓</h1>
+        <nav>
+            <ul>
+                <li><a href="/view-events">Events</a></li>
+                <li><a href="/view-job">Job Listings</a></li>
+                <li><a href="/alumni/logout" class="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile">
+            <h2>Your Profile</h2>
+            <p><strong>Name:</strong> <%= alumni.alumni_name %></p>
+            <p><strong>Email:</strong> <%= alumni.email %></p>
+            <p><strong>Batch:</strong> <%= alumni.batches %></p>
+        </section>
+
+    </main>
+</body>
+</html>
+
+
