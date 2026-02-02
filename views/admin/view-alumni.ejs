@@ -3,141 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Therapies</title>
+    <title>View Alumni - MentorMingle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-}
-
-/* Body Background */
-body {
-    background: #2a3f54;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Dashboard Container */
-.dashboard-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-/* Card Design */
-.dashboard-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    width: 500px;
-    text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* Card Hover Effect */
-.dashboard-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Heading Animation */
-h2 {
-    color: #333;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease-in-out;
-}
-
-/* Styled Table */
-.styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-/* Table Header */
-.styled-table thead {
-    background: #007BFF;
-    color: white;
-}
-
-/* Table Cells */
-.styled-table th, .styled-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Table Row Hover */
-.styled-table tr:hover {
-    background-color: #f2f2f2;
-}
-
-/* Back Button */
-.back-btn {
-    display: inline-block;
-    margin-top: 20px;
-    background: #3498db;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
-}
-
-/* Back Button Hover */
-.back-btn:hover {
-    background: #2980b9;
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .table-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        .table {
+            margin: 0;
+        }
+        .table thead th {
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            color: #495057;
+        }
+        .table tbody tr:hover {
+            background: #f1f3f4;
+        }
+        .btn-custom {
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-weight: 500;
+        }
+        .badge-custom {
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/admin/dashboard">
+                <i class="fas fa-cog me-2"></i>Admin Panel
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/admin/dashboard">
+                    <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                </a>
+                <a class="nav-link" href="/admin/logout">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <div class="dashboard-container">
-        <div class="dashboard-card">
-            <h2 class="fade-in">📜 View alumni</h2>
-            
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>Alumni Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% alumni.forEach(function(alum) { %>
+    <div class="container">
+        <div class="card table-card">
+            <div class="table-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-users me-2"></i>Alumni Directory
+                </h3>
+                <p class="mb-0 opacity-75">Manage and view all registered alumni</p>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
                         <tr>
-                            <td><%= alum.alumni_name %></td>
-                            <td><%= alum.email %></td>
-                            <td><%= alum.batches %></td>
+                            <th><i class="fas fa-user me-1"></i>Name</th>
+                            <th><i class="fas fa-envelope me-1"></i>Email</th>
+                            <th><i class="fas fa-graduation-cap me-1"></i>Batch</th>
+                            <th><i class="fas fa-cogs me-1"></i>Actions</th>
                         </tr>
-                    <% }); %>
-                </tbody>                
-            </table>
+                    </thead>
+                    <tbody>
+                        <% alumni.forEach(alumnus => { %>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle bg-primary text-white me-2" style="width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                                            <%= alumnus.alumni_name.charAt(0).toUpperCase() %>
+                                        </div>
+                                        <span class="fw-medium"><%= alumnus.alumni_name %></span>
+                                    </div>
+                                </td>
+                                <td><%= alumnus.email %></td>
+                                <td>
+                                    <span class="badge bg-secondary badge-custom"><%= alumnus.batches %></span>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-danger btn-custom btn-sm" onclick="deleteAlumni('<%= alumnus.id %>', '<%= alumnus.alumni_name %>')">
+                                            <i class="fas fa-trash me-1"></i>Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <% if (alumni.length === 0) { %>
+                <div class="text-center py-5">
+                    <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No Alumni Registered</h5>
+                    <p class="text-muted">Start by adding your first alumni member</p>
+                    <a href="/admin/alumni/add" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add First Alumni
+                    </a>
+                </div>
+            <% } %>
+        </div>
 
-            <a href="/admin/dashboard" class="back-btn">⬅️ Back to Dashboard</a>
+        <div class="text-center mt-3">
+            <a href="/admin/dashboard" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+            </a>
         </div>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-exclamation-triangle text-danger me-2"></i>Confirm Deletion
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete <strong id="deleteName"></strong>?</p>
+                    <p class="text-muted">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let deleteId = null;
+
+        function deleteAlumni(id, name) {
+            deleteId = id;
+            document.getElementById('deleteName').textContent = name;
+            new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (deleteId) {
+                fetch('/admin/alumni/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'alumni_id=' + deleteId
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Error deleting alumni');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -3,123 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumni Registration</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+    <title>Hackathon Registration - MentorMingle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-/* Registration Container */
-.register-container {
-    background: white;
-    padding: 30px;
-    width: 400px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-/* Title */
-.register-title {
-    font-size: 24px;
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-/* Error Message */
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-/* Registration Form */
-.register-form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Input Fields */
-.register-form input,
-.register-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-/* Submit Button */
-.btn-register {
-    background: #28a745;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-register:hover {
-    background: #218838;
-}
-
-/* Login Link */
-.login-link {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.login-link a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-}
-
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .register-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+        }
+        .register-header {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .register-body {
+            padding: 40px;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+        }
+        .form-control:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+        }
+        .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+        }
+        .form-select:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+        }
+        .btn-register {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="register-container">
-        <h2 class="register-title">🎓 Alumni Registration</h2>
-
-        <!-- Display error/success message -->
-        <% if (message) { %>
-            <p class="error-message"><%= message %></p>
-        <% } %>
-
-        <!-- Registration Form -->
-        <form action="/register" method="POST" class="register-form">
-            <input type="text" name="fullName" placeholder="👤 Full Name" required>
-            <input type="email" name="email" placeholder="📧 Email" required>
-            <input type="password" name="password" placeholder="🔑 Password" required>
-
-            <select name="userType" required>
-                <option value="" disabled selected>👥 Select User Type</option>
-                <option value="student">🎓 Student</option>
-                <option value="alumni">🏅 Alumni</option>
-            </select>
-
-            <input type="number" name="graduationYear" placeholder="🎓 Graduation Year">
-            <input type="text" name="department" placeholder="🏢 Department">
-
-            <button type="submit" class="btn-register">✅ Register</button>
-        </form>
-
-        <!-- Already have an account? -->
-        <p class="login-link">Already have an account? <a href="index.html">Login here</a></p>
+    <div class="container">
+        <div class="register-card">
+            <div class="register-header">
+                <i class="fas fa-user-plus fa-3x mb-3"></i>
+                <h2 class="mb-0">Join Hackathon Hub</h2>
+                <p class="mb-0 opacity-75">Create your account to get started</p>
+            </div>
+            <div class="register-body">
+                <% if (message) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i><%= message %>
+                    </div>
+                <% } %>
+                <form method="POST" action="/register">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="fullName" class="form-label">
+                                <i class="fas fa-user me-2"></i>Full Name
+                            </label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope me-2"></i>Email Address
+                            </label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock me-2"></i>Password
+                            </label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="userType" class="form-label">
+                                <i class="fas fa-id-badge me-2"></i>User Type
+                            </label>
+                            <select class="form-select" id="userType" name="userType" required>
+                                <option value="" disabled selected>Select Type</option>
+                                <option value="student">🎓 Student</option>
+                                <option value="alumni">🏅 Alumni</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="graduationYear" class="form-label">
+                                <i class="fas fa-graduation-cap me-2"></i>Graduation Year
+                            </label>
+                            <input type="number" class="form-control" id="graduationYear" name="graduationYear" placeholder="e.g., 2024">
+                        </div>
+                        <div class="col-12 mb-4">
+                            <label for="department" class="form-label">
+                                <i class="fas fa-building me-2"></i>Department
+                            </label>
+                            <input type="text" class="form-control" id="department" name="department" placeholder="e.g., Computer Science">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-register">
+                        <i class="fas fa-user-plus me-2"></i>Create Account
+                    </button>
+                </form>
+                <div class="login-link">
+                    <p class="mb-0">Already have an account?
+                        <a href="/login">
+                            <strong>Login here</strong>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

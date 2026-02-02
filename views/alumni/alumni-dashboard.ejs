@@ -187,37 +187,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-        }
-    </style>
-</head>
-
-<body>
-    <aside class="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="/view-events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
-            <li><a href="/view-job"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
-            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
-            <li><a href="#Mentorship"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
-            <li><a href="#Open Source"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
-            <li><a href="#Donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
-            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-        </ul>
-    </aside>
-    <header>
-        <h1>Welcome, <%= alumni.alumni_name %> 🎓</h1>
-    </header>
-
-    <div class="container">
-        <section class="profile">
-            <h2>Your Profile</h2>
-            <p><strong>Name:</strong> <%= alumni.alumni_name %></p>
-            <p><strong>Email:</strong> <%= alumni.email %></p>
-            <p><strong>Batch:</strong> <%= alumni.batches %></p>
-        </section>
-
-        <a href="/alumni/logout" class="logout-btn">Logout</a>
-    </div>
-</body>
-</html>
