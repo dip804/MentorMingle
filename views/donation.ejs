@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #2a3f54, #1c2833);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 10px;
+            min-height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #f5f5f5;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .sidebar ul li a i {
+            font-size: 1.2rem;
+        }
+
+        /* Content Styles */
+        .content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #8A2BE2, #4169E1);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Donation Form Styles */
+        .donation-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .donation-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .amount-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .amount-option {
+            background: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .amount-option.selected {
+            background-color: #20C997;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f9f9f9;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-method.selected {
+            background-color: #20C997;
+            color: white;
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+        }
+
+        .qr-code-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .qr-code-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .donate-btn {
+            background: #20C997;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .donate-btn:hover {
+            background-color: #17a589;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                position: static;
+                padding: 20px 0;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .donation-container {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/alumni"><i class="fa-solid fa-users"></i> Batches</a></li>
+            <li><a href="/view-events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+            <li><a href="/view-job"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
+            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
+            <li><a href="/mentor"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
+            <li><a href="/opensource"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
+            <li><a href="/donation"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
+            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Page Header -->
+        <header class="header">
+            <h1>Mentorship Programs</h1>
+            <p>Connect with experienced mentors in various domains</p>
+        </header>
+
+        <!-- Donation Section -->
+        <div class="donation-container">
+            <h2>Make a Donation</h2>
+
+            <!-- Name Input -->
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Full Name">
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email Address">
+            </div>
+
+            <!-- Amount Options -->
+            <div class="amount-options">
+                <div class="amount-option">$10</div>
+                <div class="amount-option">$50</div>
+                <div class="amount-option">$100</div>
+                <div class="amount-option">$500</div>
+            </div>
+
+            <!-- Custom Amount -->
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Or enter custom amount">
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-method"><i class="fab fa-paypal payment-icon"></i><span>PayPal</span></div>
+            <div class="payment-method"><i class="fas fa-credit-card payment-icon"></i><span>Credit/Debit Card</span></div>
+            <div class="payment-method"><i class="fas fa-university payment-icon"></i><span>Bank Transfer</span></div>
+            <div class="payment-method"><i class="fas fa-mobile-alt payment-icon"></i><span>UPI Payment</span></div>
+
+            <!-- QR Code Section -->
+            <div class="qr-code-container">
+                <p>Scan QR Code to Pay via UPI</p>
+                <img src="scanner.jpeg" alt="UPI QR Code">
+            </div>
+
+            <!-- Donate Button -->
+            <button class="donate-btn">Donate Now</button>
+        </div>
+    </main>
+
+    <!-- JavaScript to handle interaction -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const amountOptions = document.querySelectorAll('.amount-option');
+            const paymentMethods = document.querySelectorAll('.payment-method');
+
+            // Amount selection logic
+            amountOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    amountOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+            });
+
+            // Payment method selection logic
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', () => {
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    method.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

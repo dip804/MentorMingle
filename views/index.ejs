@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentorMingle - Alumni & Hackathon Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .btn-custom {
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .icon-large {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>MentorMingle
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-4">Welcome to MentorMingle</h1>
+                    <p class="lead mb-5">Connect, Learn, and Grow with our comprehensive alumni and hackathon platform</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Admin Panel -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-cog icon-large text-primary"></i>
+                            <h3 class="card-title fw-bold mb-3">Admin Panel</h3>
+                            <p class="card-text text-muted mb-4">Manage alumni, events, and job opportunities</p>
+                            <a href="/admin" class="btn btn-primary btn-custom">
+                                <i class="fas fa-sign-in-alt me-2"></i>Admin Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alumni Portal -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-users icon-large text-success"></i>
+                            <h3 class="card-title fw-bold mb-3">Alumni Portal</h3>
+                            <p class="card-text text-muted mb-4">Connect with fellow alumni, view events and job opportunities</p>
+                            <a href="/alumni" class="btn btn-success btn-custom">
+                                <i class="fas fa-sign-in-alt me-2"></i>Alumni Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hackathon Platform -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-code icon-large text-warning"></i>
+                            <h3 class="card-title fw-bold mb-3">Hackathon Hub</h3>
+                            <p class="card-text text-muted mb-4">Join hackathons, find mentors, and showcase your projects</p>
+                            <a href="/login" class="btn btn-warning btn-custom">
+                                <i class="fas fa-sign-in-alt me-2"></i>Get Started
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

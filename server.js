@@ -3,18 +3,84 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
-const { Pool } = require("pg");
+
+// Database setup - SQLite for local, PostgreSQL for production
+let pool;
+if (process.env.NODE_ENV === 'production' || process.env.DATABASE_URL) {
+    // Production: PostgreSQL
+    const { Pool } = require("pg");
+    pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false }
+    });
+} else {
+    // Local development: SQLite
+    const sqlite3 = require('sqlite3').verbose();
+    const db = new sqlite3.Database('./local.db');
+
+    // Create SQLite pool-like interface
+    pool = {
+        query: (sql, params = []) => {
+            return new Promise((resolve, reject) => {
+                if (sql.trim().toUpperCase().startsWith('SELECT')) {
+                    db.all(sql, params, (err, rows) => {
+                        if (err) reject(err);
+                        else resolve({ rows });
+                    });
+                } else {
+                    db.run(sql, params, function(err) {
+                        if (err) reject(err);
+                        else resolve({ rows: [] });
+                    });
+                }
+            });
+        }
+    };
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
-});
-
 async function createTables() {
-    const schema = `
+    const isSQLite = !process.env.DATABASE_URL;
+
+    const schema = isSQLite ? `
+        CREATE TABLE IF NOT EXISTS alumni (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            alumni_name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            batches TEXT
+        );
+        CREATE TABLE IF NOT EXISTS events (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            type TEXT,
+            date TEXT,
+            time TEXT,
+            location TEXT,
+            description TEXT,
+            seats INTEGER,
+            enrolled BOOLEAN DEFAULT 0
+        );
+        CREATE TABLE IF NOT EXISTS jobs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            company TEXT,
+            type TEXT,
+            description TEXT,
+            url TEXT
+        );
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            full_name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            user_type TEXT,
+            graduation_year INTEGER,
+            department TEXT
+        );
+    ` : `
         CREATE TABLE IF NOT EXISTS alumni (
             id SERIAL PRIMARY KEY,
             alumni_name VARCHAR(255) NOT NULL,
@@ -70,7 +136,7 @@ app.use(session({
 }));
 
 // Admin Routes
-app.get("/", (req, res) => res.redirect("/admin"));
+app.get("/", (req, res) => res.render("index"));
 app.get("/admin", (req, res) => res.render("admin/admin-login", { message: "" }));
 app.post("/admin", (req, res) => {
     const { email, password } = req.body;
