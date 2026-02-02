@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.forgot-password {
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.error-message, .message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+}

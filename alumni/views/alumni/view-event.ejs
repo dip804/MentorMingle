@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Events</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css.css">
+</head>
+<body class="bg-gray-100 p-6">
+    <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/alumni"><i class="fa-solid fa-users"></i> Batches</a></li>
+            <li><a href="/view-events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+            <li><a href="/view-job"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
+            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
+            <li><a href="#Mentorship"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
+            <li><a href="#Open Source"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
+            <li><a href="#Donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
+            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+    <main class="content">
+
+    <h2 class="text-3xl font-bold mb-4 text-center">Available Events</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% if (events.length > 0) { %>
+            <% events.forEach(event => { %>
+                <div class="bg-white shadow-lg rounded-lg p-6 relative">
+                    <!-- Ribbon -->
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white text-xs px-3 py-1 rounded-bl-lg">
+                        EVENT
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-xl font-bold text-gray-800"><%= event.title %></h3>
+
+                    <!-- Date & Time -->
+                    <div class="flex items-center text-gray-600 text-sm mt-2">
+                        <span class="mr-2">📅 <%= event.date %></span>
+                        <span class="ml-4">⏰ <%= event.time %></span>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="text-gray-600 text-sm mt-2">📍 <%= event.location %></div>
+
+                    <!-- Description -->
+                    <p class="text-gray-700 text-sm mt-4"><%= event.description %></p>
+
+                    <!-- Seats -->
+                    <div class="flex items-center text-gray-600 text-sm mt-4">
+                        <span class="mr-2">👥 <%= event.seats %> seats remaining</span>
+                    </div>
+
+                    <!-- Enroll Button -->
+                    <div class="mt-4">
+                        <a href="/event/enroll/<%= event.id %>" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">Enroll Now</a>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="text-gray-600 text-center">No events available at the moment.</p>
+        <% } %>
+    </div>
+
+    <div class="mt-6 text-center">
+        <a href="/dashboard" class="text-blue-600 hover:underline">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

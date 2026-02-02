@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Batches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/YOUR_FA_KIT_CODE.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 flex">
+
+    <!-- Sidebar -->
+    <div class="w-64 bg-gray-900 text-white min-h-screen p-5">
+        <h2 class="text-2xl font-bold text-center mb-5">Dashboard</h2>
+        <ul class="space-y-4">
+            <li>
+                <a href="/" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-house"></i> <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/alumni" class="flex items-center space-x-2 p-3 rounded-md bg-gray-700">
+                    <i class="fa-solid fa-users"></i> <span>Batches</span>
+                </a>
+            </li>
+            <li>
+                <a href="/view-events" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-calendar-days"></i> <span>Events</span>
+                </a>
+            </li>
+            <li>
+                <a href="/view-job" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-briefcase"></i> <span>Jobs</span>
+                </a>
+            </li>
+            <li>
+                <a href="#Forums" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-chart-line"></i> <span>Forums</span>
+                </a>
+            </li>
+            <li>
+                <a href="#Mentorship" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-user-tie"></i> <span>Mentorship</span>
+                </a>
+            </li>
+            <li>
+                <a href="#Open Source" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-code-branch"></i> <span>Open Source</span>
+                </a>
+            </li>
+            <li>
+                <a href="#Donations" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
+                    <i class="fa-solid fa-hand-holding-heart"></i> <span>Donations</span>
+                </a>
+            </li>
+            <li>
+                <a href="logout.html" class="flex items-center space-x-2 p-3 rounded-md hover:bg-red-600">
+                    <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-10">
+        <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-500 to-blue-500 py-4 rounded-lg shadow-md text-white">
+            🎓 Alumni Batches
+        </h2>
+        <p class="text-center text-gray-600 mt-2">Select a batch to view members</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <% batches.forEach(batch => { %>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl cursor-pointer transition-all">
+                    <h3 class="text-xl font-bold">Batch of <%= batch.year %></h3>
+                    <p class="text-gray-500"><%= batch.members %> Members</p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+</body>
+</html>

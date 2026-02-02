@@ -1,0 +1,8 @@
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+DB_NAME=hospital_db
+SESSION_SECRET=mysecret
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_password

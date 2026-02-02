@@ -3,174 +3,718 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Therapy</title>
-
+    <title>Alumni Connect - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Global Styles */
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-}
-
-/* Body Background */
-body {
-    background: #2a3f54;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Dashboard Container */
-.dashboard-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-/* Card Design */
-.dashboard-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* Card Hover Effect */
-.dashboard-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Heading Animation */
-h2 {
-    color: #333;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease-in-out;
-}
-
-/* Success/Error Message */
-.message {
-    color: #28a745;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-/* Form Styling */
-.alumni-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Labels */
-label {
-    font-weight: bold;
-    text-align: left;
-}
-
-/* Input Fields */
-input {
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 100%;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-/* Input Hover & Focus */
-input:hover, input:focus {
-    border-color: #007BFF;
-    box-shadow: 0px 5px 10px rgba(0, 123, 255, 0.3);
-    outline: none;
-}
-
-/* Submit Button */
-.submit-btn {
-    background: #007BFF;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-/* Submit Button Hover */
-.submit-btn:hover {
-    background: #0056b3;
-    transform: translateY(-3px);
-    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.8);
-}
-
-/* Back Button */
-.back-btn {
-    display: inline-block;
-    margin-top: 10px;
-    background: #e74c3c;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
-}
-
-/* Back Button Hover */
-.back-btn:hover {
-    background: #c0392b;
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            display: block;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .container {
+            display: flex;
+            width: 900px;
+            height: 650px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .left-panel {
+            flex: 1;
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: all 0.5s ease;
+        }
+        
+        .left-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(110, 142, 251, 0.4), rgba(167, 119, 227, 0.4));
+            z-index: 1;
+        }
+        
+        .left-panel h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            background: linear-gradient(90deg, #fff, #e6e6e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s infinite linear;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -500px 0; }
+            100% { background-position: 500px 0; }
+        }
+        
+        .left-panel p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #fff;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: all 0.5s ease;
+            animation: pulseBorder 3s infinite;
+        }
+        
+        @keyframes pulseBorder {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.2); }
+            50% { border-color: rgba(110, 142, 251, 0.8); }
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #6e8efb;
+            box-shadow: 0 15px 25px rgba(110, 142, 251, 0.5);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .profile-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .right-panel {
+            flex: 1;
+            background: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .right-panel::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(110, 142, 251, 0.1), rgba(167, 119, 227, 0.1));
+            border-radius: 50%;
+            right: -250px;
+            bottom: -250px;
+            z-index: 0;
+        }
+        
+        .alumni-form {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .alumni-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .alumni-form input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .alumni-form input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #6e8efb, 0 8px 15px rgba(110, 142, 251, 0.2);
+            transform: translateY(-2px);
+            background: #fff;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(135deg, #a777e3, #6e8efb);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .submit-btn:hover:before {
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            color: #6e8efb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 8px 0;
+            z-index: 2;
+        }
+        
+        .back-btn:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #6e8efb;
+            transition: width 0.3s;
+        }
+        
+        .back-btn:hover {
+            color: #a777e3;
+        }
+        
+        .back-btn:hover:after {
+            width: 100%;
+        }
+        
+        .message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: rgba(110, 142, 251, 0.1);
+            color: #6e8efb;
+            border-left: 4px solid #6e8efb;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            animation: spin 10s linear infinite;
+        }
+        
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .testimonial {
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            margin-right: 10px;
+        }
+        
+        /* Circle animations */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            top: -75px;
+            left: -75px;
+        }
+        
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 2s;
+        }
+        
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            bottom: 80px;
+            left: 30px;
+            animation-delay: 4s;
+        }
+        
+        /* Success checkmark animation */
+        .success-checkmark {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            animation: scaleIn 0.5s ease-out, pulse 2s infinite ease-in-out;
+            box-shadow: 0 10px 30px rgba(110, 142, 251, 0.3);
+        }
+        
+        @keyframes scaleIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(110, 142, 251, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(110, 142, 251, 0); }
+        }
+        
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            display: inline-block;
+            transform: rotate(45deg);
+            left: 20px;
+            top: 12px;
+        }
+        
+        .checkmark-stem {
+            position: absolute;
+            width: 3px;
+            height: 25px;
+            background-color: #6e8efb;
+            left: 20px;
+            top: 0;
+            animation: drawStem 0.3s ease-in-out 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .checkmark-kick {
+            position: absolute;
+            width: 12px;
+            height: 3px;
+            background-color: #6e8efb;
+            left: 8px;
+            top: 22px;
+            animation: drawKick 0.3s ease-in-out 0.6s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes drawStem {
+            0% { height: 0; opacity: 1; }
+            100% { height: 25px; opacity: 1; }
+        }
+        
+        @keyframes drawKick {
+            0% { width: 0; opacity: 1; }
+            100% { width: 12px; opacity: 1; }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .container {
+                width: 95%;
+                height: auto;
+                flex-direction: column;
+            }
+            
+            .left-panel {
+                display: none;
+            }
+            
+            .right-panel {
+                padding: 40px 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo"><i class="fas fa-graduation-cap"></i> AlumniConnect</div>
+            
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="https://img.freepik.com/premium-vector/student-logo-icon-brand-identity-sign-symbol-template_880781-553.jpg" alt="Alumni Profile" id="profileImage">
+                </div>
+                <h1>Add Alumni Profile</h1>
+            </div>
+            
+            <div>
+                <p>Welcome new graduates to our alumni community!</p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"Expand our alumni community. Add new graduates and help us build a strong network for future generations."</p>
+                <div class="testimonial-author">- Sarah Johnson, Class of 2018</div>
+            </div>
+            
+            <!-- Animated elements -->
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+        
+        <div class="right-panel">
+            <form action="/admin/alumni/add" method="POST" class="alumni-form" id="alumniForm">
+                <label>Alumni Name:</label>
+                <input type="text" name="alumni_name" placeholder="Enter Alumni Name" required>
 
-    <div class="dashboard-container">
-        <div class="dashboard-card">
-            <h2 class="fade-in">🩺 Add Alumni</h2>
-            
-            
-            <form action="/admin/alumni/add" method="POST" class="alumni-form">
-                <label>Therapist Name:</label>
-                <input type="text" name="alumni_name" placeholder="Enter alumni Name" required>
-                
                 <label>Email:</label>
                 <input type="email" name="email" placeholder="Enter Email" required>
-                
+
                 <label>Password:</label>
                 <input type="password" name="password" placeholder="Enter Password" required>
-                <% if (message) { %>
-                    <p class="message"><%= message %></p>
-                <% } %>
 
-                <button type="submit" class="submit-btn">➕ Add Alumni</button>
+                <label>Batch:</label>
+                <input type="text" name="batches" placeholder="Enter Batch (e.g., 2020-2024)" required>
+
+                <div class="message" id="formMessage" style="display: none;"></div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span><i class="fas fa-user-plus"></i> Add Alumni</span>
+                </button>
             </form>
-
-            <a href="/admin/dashboard" class="back-btn">⬅️ Back to Dashboard</a>
+            <a href="/admin/dashboard" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+            
+            <div class="success-checkmark" id="successMark">
+                <div class="checkmark">
+                    <div class="checkmark-stem"></div>
+                    <div class="checkmark-kick"></div>
+                </div>
+            </div>
         </div>
     </div>
-
+    
+    <script>
+        // Create background particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 20;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random position, size and animation
+            const size = Math.random() * 15 + 5;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 20 + 10;
+            
+            particle.style.width = ${size}px;
+            particle.style.height = ${size}px;
+            particle.style.left = ${posX}%;
+            particle.style.top = ${posY}%;
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+            
+            // Add animation
+            particle.style.animation = float ${duration}s infinite ease-in-out ${delay}s;
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Form handling
+        const alumniForm = document.getElementById('alumniForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMark = document.getElementById('successMark');
+        
+        alumniForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            const inputs = alumniForm.querySelectorAll('input');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.boxShadow = '0 0 0 2px #ff3e3e';
+                    
+                    input.addEventListener('input', function() {
+                        this.style.boxShadow = '';
+                    }, { once: true });
+                }
+            });
+            
+            if (!isValid) {
+                showMessage('Please fill in all required fields', 'error');
+                shakeButton();
+                return;
+            }
+            
+            // Check email format
+            const emailInput = alumniForm.querySelector('input[type="email"]');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(emailInput.value)) {
+                emailInput.style.boxShadow = '0 0 0 2px #ff3e3e';
+                showMessage('Please enter a valid email address', 'error');
+                shakeButton();
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual submission)
+            setTimeout(() => {
+                alumniForm.style.opacity = 0;
+                alumniForm.style.visibility = 'hidden';
+                successMark.style.display = 'block';
+                
+                // Redirect or show success message
+                setTimeout(() => {
+                    showMessage('Alumni added successfully!', 'success');
+                    alumniForm.reset();
+                    alumniForm.style.opacity = 1;
+                    alumniForm.style.visibility = 'visible';
+                    successMark.style.display = 'none';
+                    submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Add Alumni';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+        
+        function showMessage(text, type = 'info') {
+            formMessage.textContent = text;
+            formMessage.style.display = 'block';
+            
+            // Set message type style
+            if (type === 'error') {
+                formMessage.style.backgroundColor = 'rgba(255, 62, 62, 0.1)';
+                formMessage.style.borderLeftColor = '#ff3e3e';
+                formMessage.style.color = '#ff3e3e';
+            } else if (type === 'success') {
+                formMessage.style.backgroundColor = 'rgba(46, 213, 115, 0.1)';
+                formMessage.style.borderLeftColor = '#2ed573';
+                formMessage.style.color = '#2ed573';
+            } else {
+                formMessage.style.backgroundColor = 'rgba(110, 142, 251, 0.1)';
+                formMessage.style.borderLeftColor = '#6e8efb';
+                formMessage.style.color = '#6e8efb';
+            }
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        function shakeButton() {
+            submitBtn.classList.add('shake');
+            
+            // Define shake animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+                .shake {
+                    animation: shake 0.6s ease-in-out;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            setTimeout(() => {
+                submitBtn.classList.remove('shake');
+            }, 600);
+        }
+        
+        // Input effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            // Add focus effect
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('label').style.color = '#6e8efb';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('label').style.color = '#333';
+            });
+            
+            // Add typing effect
+            input.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.style.borderLeft = '4px solid #6e8efb';
+                } else {
+                    this.style.borderLeft = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

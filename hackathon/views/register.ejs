@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Registration</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Registration Container */
+.register-container {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Title */
+.register-title {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Registration Form */
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input Fields */
+.register-form input,
+.register-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.btn-register {
+    background: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    background: #218838;
+}
+
+/* Login Link */
+.login-link {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2 class="register-title">🎓 Alumni Registration</h2>
+
+        <!-- Display error/success message -->
+        <% if (message) { %>
+            <p class="error-message"><%= message %></p>
+        <% } %>
+
+        <!-- Registration Form -->
+        <form action="/register" method="POST" class="register-form">
+            <input type="text" name="fullName" placeholder="👤 Full Name" required>
+            <input type="email" name="email" placeholder="📧 Email" required>
+            <input type="password" name="password" placeholder="🔑 Password" required>
+
+            <select name="userType" required>
+                <option value="" disabled selected>👥 Select User Type</option>
+                <option value="student">🎓 Student</option>
+                <option value="alumni">🏅 Alumni</option>
+            </select>
+
+            <input type="number" name="graduationYear" placeholder="🎓 Graduation Year">
+            <input type="text" name="department" placeholder="🏢 Department">
+
+            <button type="submit" class="btn-register">✅ Register</button>
+        </form>
+
+        <!-- Already have an account? -->
+        <p class="login-link">Already have an account? <a href="index.html">Login here</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Page</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #2a3f54, #1c2833);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 10px;
+            min-height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #f5f5f5;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .sidebar ul li a i {
+            font-size: 1.2rem;
+        }
+
+        /* Content Styles */
+        .content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Mentorship Page Specific Styles */
+        .header {
+            background: linear-gradient(90deg, #8A2BE2, #4169E1);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* New Grid Layout for Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .mentorship-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mentorship-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #20C997;
+        }
+
+        .domain-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .mentor-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .duration {
+            display: inline-block;
+            background: rgba(32, 201, 151, 0.1);
+            color: #20C997;
+            font-size: 0.9rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .mentorship-card p {
+            margin-bottom: 20px;
+        }
+
+        .request-btn {
+            background: #20C997;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .request-btn:hover {
+            background: #1bae85;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Upcoming Domains Section */
+        .upcoming-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .domains-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .domain-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .domain-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f2f5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .domain-icon i {
+            font-size: 1.5rem;
+            color: #20C997;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                position: static;
+                padding: 20px 0;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/alumni"><i class="fa-solid fa-users"></i> Batches</a></li>
+            <li><a href="/view-events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
+            <li><a href="/view-job"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
+            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
+            <li><a href="/mentor"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
+            <li><a href="/opensource"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
+            <li><a href="/donation"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
+            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <!-- Mentorship Page Content -->
+        <header class="header">
+            <h1>Mentorship Programs</h1>
+            <p>Connect with experienced mentors in various domains</p>
+        </header>
+
+        <div class="card-container">
+            <!-- Full-Stack Web Development Card -->
+            <div class="mentorship-card">
+                <img src="fullStack.jpeg" alt="Web Development" class="domain-image">
+                <h2>Full-Stack Web Development</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Ankit kumar</span>
+                </div>
+                <div class="duration">6 months</div>
+                <p>Learn to build modern web applications using HTML, CSS, JavaScript, React, and Node.js.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+
+            <!-- Data Science Card -->
+            <div class="mentorship-card">
+                <img src="Datasc.jpeg" alt="Data Science" class="domain-image">
+                <h2>Data Science and Machine Learning</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Ankit Kumar sah</span>
+                </div>
+                <div class="duration">8 months</div>
+                <p>Master data analysis, visualization, and machine learning with Python, R, and TensorFlow.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+
+            <!-- Mobile App Development Card -->
+            <div class="mentorship-card">
+                <img src="App.jpeg" alt="Mobile App Development" class="domain-image">
+                <h2>Mobile App Development</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Ravi print</span>
+                </div>
+                <div class="duration">5 months</div>
+                <p>Develop mobile applications for iOS and Android using Flutter and React Native.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+            
+            <!-- Database Management Card -->
+            <div class="mentorship-card">
+                <img src="DBMS.jpeg" alt="Database Management" class="domain-image">
+                <h2>Database Management</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Dipak kumar</span>
+                </div>
+                <div class="duration">5 months</div>
+                <p>Develop mobile applications for iOS and Android using Flutter and React Native.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+            
+            <!-- Network Security Card -->
+            <div class="mentorship-card">
+                <img src="network.jpg" alt="Network Security" class="domain-image">
+                <h2>Network Security</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Pawan kumar Singh</span>
+                </div>
+                <div class="duration">5 months</div>
+                <p>Develop mobile applications for iOS and Android using Flutter and React Native.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+            
+            <!-- Circuit Design Card -->
+            <div class="mentorship-card">
+                <img src="circuit.jpeg" alt="Circuit Design" class="domain-image">
+                <h2>Circuit Design</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Amit munde</span>
+                </div>
+                <div class="duration">5 months</div>
+                <p>Develop mobile applications for iOS and Android using Flutter and React Native.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+            
+            <!-- Transformer Card -->
+            <div class="mentorship-card">
+                <img src="transformer.jpeg" alt="Transformer" class="domain-image">
+                <h2>Transformer</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Amit munde</span>
+                </div>
+                <div class="duration">5 months</div>
+                <p>Develop mobile applications for iOS and Android using Flutter and React Native.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+            
+            <!-- Aerial Design Card -->
+            <div class="mentorship-card">
+                <img src="aerial.jpeg" alt="Arial Design" class="domain-image">
+                <h2>Aerial Design</h2>
+                <div class="mentor-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Amit munde</span>
+                </div>
+                <div class="duration">5 months</div>
+                <p>Develop mobile applications for iOS and Android using Flutter and React Native.</p>
+                <button class="request-btn">
+                    <i class="fa-solid fa-handshake"></i>
+                    Request Mentorship
+                </button>
+            </div>
+        </div>
+
+        <!-- Upcoming Domains Section -->
+        <section class="upcoming-section">
+            <h2>Upcoming Domains</h2>
+            <div class="domains-container">
+                <!-- DevOps Domain -->
+                <div class="domain-card">
+                    <div class="domain-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <div>
+                        <h3>DevOps and Cloud</h3>
+                        <h4>Coming soon....</h4>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Domain -->
+                <div class="domain-card">
+                    <div class="domain-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3>Cybersecurity</h3>
+                        <h4>Coming soon....</h4>
+                    </div>
+                </div>
+
+                <!-- AI Domain -->
+                <div class="domain-card">
+                    <div class="domain-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3>Artificial Intelligence</h3>
+                        <h4>Coming soon....</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

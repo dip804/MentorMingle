@@ -1,0 +1,553 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Enhanced Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1e293b;
+    color: #fff;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100%;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar img {
+    width: 150px;
+    margin: 0 auto 30px;
+    display: block;
+}
+
+.sidebar a {
+    color: #f1f5f9;
+    padding: 15px 20px;
+    margin: 8px 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.sidebar a i {
+    width: 25px;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: #334155;
+    color: #14b8a6;
+}
+
+/* Modern Main Content */
+.main {
+    margin-left: 250px;
+    flex: 1;
+    padding: 40px;
+    background: #f0f2f5;
+    overflow-y: auto;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    background: linear-gradient(135deg, #7e22ce, #2563eb);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+/* Cards Design */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Card Styles */
+.event-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.event-type {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    transform: rotate(45deg);
+    width: 120px;
+    text-align: center;
+    padding: 4px 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.event-type.hackathon {
+    background: #7e22ce;
+    color: white;
+}
+
+.event-type.workshop {
+    background: #2563eb;
+    color: white;
+}
+
+.event-type.webinar {
+    background: #14b8a6;
+    color: white;
+}
+
+.event-type.speech {
+    background: #e11d48;
+    color: white;
+}
+
+.event-datetime {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.event-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.event-meta i {
+    width: 18px;
+    text-align: center;
+}
+
+.event-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.enroll-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.seats-remaining {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.seats-remaining i {
+    margin-right: 5px;
+}
+
+.btn-enroll {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.btn-enroll.enrolled {
+    background: #64748b;
+    cursor: not-allowed;
+}
+
+/* Profile Section Styles */
+.profile-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 30px;
+    border: 3px solid #e2e8f0;
+}
+
+/* Batch Section Styles */
+.student-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: -40px auto 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.student-name {
+    color: #1e293b;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.batch-year {
+    color: #64748b;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.student-meta {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: #f1f5f9;
+    color: #64748b;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin: 5px 5px 0 0;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.section-title {
+    color: #1e293b;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.info-card {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.info-item {
+    margin-bottom: 15px;
+}
+
+.info-label {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: #14b8a6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0d9488;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+/* Mentorship Card Styles */
+.mentor-card {
+    position: relative;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8fafc, #ffffff);
+    border-left: 4px solid #14b8a6;
+}
+
+.mentor-title {
+    color: #1e293b;
+    font-size: 1.4em;
+    margin-bottom: 8px;
+}
+
+.mentor-name {
+    color: #64748b;
+    font-size: 1em;
+    margin-bottom: 12px;
+}
+
+.mentor-duration {
+    background: #14b8a622;
+    color: #0d9488;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.mentor-description {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.upcoming-domains {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.domain-pill {
+    background: #f1f5f9;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.domain-pill i {
+    margin-right: 10px;
+    color: #14b8a6;
+}
+
+/* Open Source Section Styles */
+.project-card {
+    position: relative;
+    padding: 25px;
+}
+
+.project-tags {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.project-tag {
+    background: #e2e8f0;
+    color: #1e293b;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.project-language {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: #e2e8f0;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn.active {
+    background: #14b8a6;
+    color: white;
+}
+
+/* Placement Section Styles */
+.job-card {
+    position: relative;
+    padding: 25px;
+    border-left: 4px solid #2563eb;
+}
+
+.job-title {
+    color: #1e293b;
+    font-size: 1.4em;
+    margin-bottom: 8px;
+}
+
+.job-company {
+    color: #64748b;
+    font-size: 1em;
+    margin-bottom: 12px;
+}
+
+.job-location {
+    background: #e2e8f0;
+    color: #1e293b;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.job-description {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.job-apply-btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 20px;
+    background: #14b8a6;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.job-apply-btn:hover {
+    background: #0d9488;
+}
+
+/* Donation Section Styles */
+.donation-card {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.donation-amounts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.amount-option {
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.amount-option:hover {
+    border-color: #14b8a6;
+}
+
+.amount-option.active {
+    border-color: #14b8a6;
+    background: #14b8a611;
+}
+
+.donation-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.payment-methods {
+    margin: 20px 0;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.payment-method.active {
+    border-color: #14b8a6;
+    background: #14b8a611;
+}
+
+.payment-method i {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.donate-success {
+    text-align: center;
+    padding: 30px;
+    display: none;
+}
+
+.donate-success i {
+    font-size: 50px;
+    color: #14b8a6;
+    margin-bottom: 20px;
+}

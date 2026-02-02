@@ -1,0 +1,307 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #2a3f54, #1c2833);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar h2 {
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar ul li {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #f5f5f5;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.sidebar ul li a i {
+    font-size: 1.2rem;
+}
+
+/* Content Styles */
+.content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.welcome-section {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.05);
+    
+}
+
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid #2a3f54;
+    object-fit: cover;
+}
+
+.welcome-section h1 {
+    font-size: 1.8rem;
+    color: #2a3f54;
+}
+
+.welcome-section p {
+    color: #555;
+    margin-top: 5px;
+}
+
+section {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+}
+
+section a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #2a3f54;
+    color: #ffffff;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+section a:hover {
+    background: #1e2b38;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        position: static;
+        padding: 20px 0;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sidebar ul li {
+        margin: 0;
+    }
+
+    .content {
+        padding: 20px;
+    }
+}
+
+/* Sections */
+section {
+transition: all 0.4s ease;
+}
+
+section:hover {
+transform: translateY(-8px) scale(1.02);
+box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Buttons inside sections */
+section a {
+display: inline-block;
+margin-top: 10px;
+padding: 12px 24px;
+background: #2a3f54;
+color: #ffffff;
+border-radius: 8px;
+transition: all 0.3s ease;
+}
+
+section a:hover {
+background: #1e2b38;
+transform: translateY(-3px);
+box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Sidebar Links */
+.sidebar ul li a:hover {
+background-color: rgba(255, 255, 255, 0.2);
+color: #ffcc00;
+transform: translateX(8px) scale(1.05);
+}
+.welcome-section {
+transition: all 0.4s ease;
+}
+
+.welcome-section:hover {
+transform: translateY(-5px);
+box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.1);
+background: linear-gradient(to right, #ffffff, #f9f9f9);
+}
+
+/* Profile picture hover effect */
+.profile-pic {
+transition: all 0.3s ease;
+}
+
+.profile-pic:hover {
+transform: scale(1.1);
+border-color: #3a5f7c;
+box-shadow: 0 0 15px rgba(42, 63, 84, 0.4);
+}
+
+/* Dashboard title hover effect */
+.sidebar h2 {
+transition: all 0.3s ease;
+position: relative;
+}
+
+.sidebar h2:hover {
+color: #ffcc00;
+text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar h2:hover::after {
+content: '';
+position: absolute;
+bottom: -8px;
+left: 0;
+width: 100%;
+height: 2px;
+background: #ffcc00;
+animation: slideIn 0.4s ease-out forwards;
+}
+
+@keyframes slideIn {
+from { width: 0; }
+to { width: 100%; }
+}
+
+/* Active section indicator */
+section {
+position: relative;
+overflow: hidden;
+}
+
+section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 4px;
+height: 0;
+background: #2a3f54;
+transition: height 0.4s ease;
+}
+
+section:hover::before {
+height: 100%;
+}
+
+/* Section heading hover effect */
+section h2 {
+transition: all 0.3s ease;
+}
+
+section:hover h2 {
+transform: translateX(10px);
+color: #2a3f54;
+}
+
+/* Interactive sidebar transition */
+.sidebar {
+transition: width 0.3s ease;
+}
+
+@media (min-width: 769px) {
+body:hover .sidebar {
+width: 280px;
+}
+}
