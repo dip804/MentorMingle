@@ -1,82 +1,275 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumni Batches</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/YOUR_FA_KIT_CODE.js" crossorigin="anonymous"></script>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Alumni Batches - MentorMingle</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' rel='stylesheet'>
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .batch-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            overflow: hidden;
+            height: 100%;
+            cursor: pointer;
+        }
+        .batch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+        .batch-year {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6f42c1;
+            margin-bottom: 10px;
+        }
+        .batch-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+        .batch-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        .batch-members {
+            color: #718096;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .batch-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6f42c1;
+        }
+        .stat-label {
+            color: #718096;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-back {
+            background: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-back:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        .stats-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        .overview-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6f42c1;
+            margin-bottom: 5px;
+        }
+        .overview-label {
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex">
+<body>
+    <nav class='navbar navbar-expand-lg navbar-dark'>
+        <div class='container'>
+            <a class='navbar-brand fw-bold' href='/dashboard'>
+                <i class='fas fa-users-cog me-2'></i>MentorMingle
+            </a>
+            <div class='navbar-nav ms-auto'>
+                <a class='nav-link' href='/dashboard'><i class='fas fa-tachometer-alt me-1'></i>Dashboard</a>
+                <a class='nav-link' href='/mentor'><i class='fas fa-user-tie me-1'></i>Mentorship</a>
+                <a class='nav-link' href='/opensource'><i class='fas fa-code-branch me-1'></i>Open Source</a>
+                <a class='nav-link' href='/donation'><i class='fas fa-hand-holding-heart me-1'></i>Donations</a>
+                <a class='nav-link' href='/ali'><i class='fas fa-star me-1'></i>Ali</a>
+                <a class='nav-link' href='/logout'><i class='fas fa-sign-out-alt me-1'></i>Logout</a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Sidebar -->
-    <div class="w-64 bg-gray-900 text-white min-h-screen p-5">
-        <h2 class="text-2xl font-bold text-center mb-5">Dashboard</h2>
-        <ul class="space-y-4">
-            <li>
-                <a href="/" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-house"></i> <span>Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="/alumni" class="flex items-center space-x-2 p-3 rounded-md bg-gray-700">
-                    <i class="fa-solid fa-users"></i> <span>Batches</span>
-                </a>
-            </li>
-            <li>
-                <a href="/view-events" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-calendar-days"></i> <span>Events</span>
-                </a>
-            </li>
-            <li>
-                <a href="/view-job" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-briefcase"></i> <span>Jobs</span>
-                </a>
-            </li>
-            <li>
-                <a href="#Forums" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-chart-line"></i> <span>Forums</span>
-                </a>
-            </li>
-            <li>
-                <a href="#Mentorship" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-user-tie"></i> <span>Mentorship</span>
-                </a>
-            </li>
-            <li>
-                <a href="#Open Source" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-code-branch"></i> <span>Open Source</span>
-                </a>
-            </li>
-            <li>
-                <a href="#Donations" class="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-700">
-                    <i class="fa-solid fa-hand-holding-heart"></i> <span>Donations</span>
-                </a>
-            </li>
-            <li>
-                <a href="logout.html" class="flex items-center space-x-2 p-3 rounded-md hover:bg-red-600">
-                    <i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Main Content -->
-    <div class="flex-1 p-10">
-        <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-500 to-blue-500 py-4 rounded-lg shadow-md text-white">
-            🎓 Alumni Batches
-        </h2>
-        <p class="text-center text-gray-600 mt-2">Select a batch to view members</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            <% batches.forEach(batch => { %>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl cursor-pointer transition-all">
-                    <h3 class="text-xl font-bold">Batch of <%= batch.year %></h3>
-                    <p class="text-gray-500"><%= batch.members %> Members</p>
-                </div>
-            <% }); %>
+    <div class='hero-section'>
+        <div class='container'>
+            <h1 class='display-4 fw-bold mb-3'>
+                <i class='fas fa-graduation-cap me-3'></i>Alumni Batches
+            </h1>
+            <p class='lead'>Connect with alumni from different batches and build lasting professional relationships</p>
         </div>
     </div>
 
+    <div class='container py-5'>
+        <!-- Overview Stats -->
+        <div class='row g-4 mb-5'>
+            <div class='col-lg-3 col-md-6'>
+                <div class='stats-overview'>
+                    <div class='overview-number'>15+</div>
+                    <div class='overview-label'>Batches</div>
+                </div>
+            </div>
+            <div class='col-lg-3 col-md-6'>
+                <div class='stats-overview'>
+                    <div class='overview-number'>2000+</div>
+                    <div class='overview-label'>Alumni</div>
+                </div>
+            </div>
+            <div class='col-lg-3 col-md-6'>
+                <div class='stats-overview'>
+                    <div class='overview-number'>500+</div>
+                    <div class='overview-label'>Success Stories</div>
+                </div>
+            </div>
+            <div class='col-lg-3 col-md-6'>
+                <div class='stats-overview'>
+                    <div class='overview-number'>50+</div>
+                    <div class='overview-label'>Companies</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batches Grid -->
+        <div class='row g-4'>
+            <% if (typeof batches !== 'undefined' && batches.length > 0) { %>
+                <% batches.forEach(batch => { %>
+                    <div class='col-lg-4 col-md-6'>
+                        <div class='card batch-card' onclick='viewBatch(<%= batch.year %>)'>
+                            <div class='card-body d-flex flex-column'>
+                                <div class='batch-icon'>
+                                    <i class='fas fa-graduation-cap'></i>
+                                </div>
+                                <div class='batch-year'><%= batch.year %></div>
+                                <h5 class='batch-title'>Batch of <%= batch.year %></h5>
+                                <p class='batch-members'><%= batch.members || 0 %> Members</p>
+                                <div class='batch-stats mt-auto'>
+                                    <div class='stat-item'>
+                                        <div class='stat-number'><%= Math.floor(Math.random() * 50) + 10 %></div>
+                                        <div class='stat-label'>Active</div>
+                                    </div>
+                                    <div class='stat-item'>
+                                        <div class='stat-number'><%= Math.floor(Math.random() * 20) + 5 %></div>
+                                        <div class='stat-label'>Mentors</div>
+                                    </div>
+                                    <div class='stat-item'>
+                                        <div class='stat-number'><%= Math.floor(Math.random() * 30) + 5 %></div>
+                                        <div class='stat-label'>Events</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <!-- Sample Batches for Demo -->
+                <% 
+                const sampleBatches = [
+                    { year: 2023, members: 45 },
+                    { year: 2022, members: 52 },
+                    { year: 2021, members: 48 },
+                    { year: 2020, members: 55 },
+                    { year: 2019, members: 42 },
+                    { year: 2018, members: 38 }
+                ];
+                sampleBatches.forEach(batch => { %>
+                    <div class='col-lg-4 col-md-6'>
+                        <div class='card batch-card' onclick='viewBatch(<%= batch.year %>)'>
+                            <div class='card-body d-flex flex-column'>
+                                <div class='batch-icon'>
+                                    <i class='fas fa-graduation-cap'></i>
+                                </div>
+                                <div class='batch-year'><%= batch.year %></div>
+                                <h5 class='batch-title'>Batch of <%= batch.year %></h5>
+                                <p class='batch-members'><%= batch.members %> Members</p>
+                                <div class='batch-stats mt-auto'>
+                                    <div class='stat-item'>
+                                        <div class='stat-number'><%= Math.floor(Math.random() * 50) + 10 %></div>
+                                        <div class='stat-label'>Active</div>
+                                    </div>
+                                    <div class='stat-item'>
+                                        <div class='stat-number'><%= Math.floor(Math.random() * 20) + 5 %></div>
+                                        <div class='stat-label'>Mentors</div>
+                                    </div>
+                                    <div class='stat-item'>
+                                        <div class='stat-number'><%= Math.floor(Math.random() * 30) + 5 %></div>
+                                        <div class='stat-label'>Events</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+
+        <div class='text-center mt-5'>
+            <a href='/dashboard' class='btn btn-back'>
+                <i class='fas fa-arrow-left me-2'></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+    <script>
+        function viewBatch(year) {
+            alert('Viewing alumni from batch ' + year + '. This feature will show detailed member profiles and contact information.');
+        }
+    </script>
 </body>
 </html>

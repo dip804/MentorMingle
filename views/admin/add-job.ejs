@@ -3,152 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a New Job | Alumni Connect</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Ensure you link your CSS file -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Add Job - MentorMingle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-/* Section Title */
-.section-title {
-    font-size: 28px;
-    color: #2c3e50;
-    margin-top: 20px;
-}
-
-.section-description {
-    color: #d63384;
-    font-size: 18px;
-}
-
-/* Job Form Layout */
-.job-container {
-    max-width: 900px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.job-form-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.job-form {
-    width: 50%;
-    padding: 20px;
-}
-
-.job-form h3 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.job-form label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: left;
-}
-
-.job-form input,
-.job-form textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.job-form textarea {
-    height: 80px;
-}
-
-.btn-submit {
-    width: 100%;
-    background: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn-submit:hover {
-    background: #0056b3;
-}
-
-/* View Jobs Link */
-.view-jobs {
-    display: block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.view-jobs:hover {
-    text-decoration: underline;
-}
-
-/* Right Side Image */
-.job-image {
-    width: 45%;
-}
-
-.responsive-img {
-    width: 100%;
-    border-radius: 10px;
-}
-
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+        .form-body {
+            padding: 40px;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-back {
+            background: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-back:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <div class="job-container">
-        <h2 class="section-title"><i class="fas fa-rocket"></i> About Our Projects</h2>
-        <p class="section-description">We provide top-notch job postings and career opportunities with a seamless application experience.</p>
-        
-        <div class="job-form-container">
-            <div class="job-form">
-                <h3><i class="fas fa-thumbtack"></i> Add a New Job</h3>
-                <form action="/admin/alumni/job" method="POST">
-                    <label for="title">Job Title:</label>
-                    <input type="text" name="title" placeholder="Enter Job Title" required>
-    
-                    <label for="company">Company:</label>
-                    <input type="text" name="company" placeholder="Enter Company Name" required>
-    
-                    <label for="type">Job Type:</label>
-                    <input type="text" name="type" placeholder="e.g., Full-Time, Part-Time, Internship" required>
-    
-                    <label for="description">Description:</label>
-                    <textarea name="description" placeholder="Enter job description" required></textarea>
-    
-                    <label for="url">Application URL:</label>
-                    <input type="url" name="url" placeholder="Enter job application link" required>
-    
-                    <button type="submit" class="btn-submit"><i class="fas fa-check-circle"></i> Add Job</button>
-                </form>
-                <a href="/view-job" class="view-jobs"><i class="fas fa-eye"></i> View All Jobs</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/admin/dashboard">
+                <i class="fas fa-user-shield me-2"></i>MentorMingle Admin
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/admin/dashboard"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
+                <a class="nav-link" href="/admin/logout"><i class="fas fa-sign-out-alt me-1"></i>Logout</a>
             </div>
-            
-            <div class="job-image">
-                <img src="https://i0.wp.com/uniedu.in/wp-content/uploads/2024/05/students-corner.png?fit=1024%2C1024&ssl=1" alt="Students studying" class="responsive-img"> <!-- Replace with your actual image -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h3 class="mb-0"><i class="fas fa-briefcase me-2"></i>Add New Job Opportunity</h3>
+                    </div>
+                    <div class="form-body">
+                        <% if (message) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i><%= message %>
+                            </div>
+                        <% } %>
+
+                        <form action="/admin/alumni/job" method="POST">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="title" class="form-label fw-bold">
+                                        <i class="fas fa-heading me-1"></i>Job Title
+                                    </label>
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="e.g., Software Engineer" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="company" class="form-label fw-bold">
+                                        <i class="fas fa-building me-1"></i>Company Name
+                                    </label>
+                                    <input type="text" class="form-control" id="company" name="company" placeholder="e.g., Google Inc." required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="type" class="form-label fw-bold">
+                                    <i class="fas fa-tag me-1"></i>Job Type
+                                </label>
+                                <input type="text" class="form-control" id="type" name="type" placeholder="e.g., Full-Time, Part-Time, Internship, Remote" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label fw-bold">
+                                    <i class="fas fa-align-left me-1"></i>Job Description
+                                </label>
+                                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Detailed job description, requirements, and responsibilities" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="url" class="form-label fw-bold">
+                                    <i class="fas fa-link me-1"></i>Application URL
+                                </label>
+                                <input type="url" class="form-control" id="url" name="url" placeholder="https://company.com/careers/job-id" required>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <a href="/admin/dashboard" class="btn btn-back me-md-2">
+                                    <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                                </a>
+                                <button type="submit" class="btn btn-submit">
+                                    <i class="fas fa-plus me-1"></i>Add Job
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

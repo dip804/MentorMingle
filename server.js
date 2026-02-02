@@ -137,7 +137,10 @@ app.use(session({
 
 // Admin Routes
 app.get("/", (req, res) => res.render("index"));
-app.get("/admin", (req, res) => res.render("admin/admin-login", { message: "" }));
+app.get("/admin", (req, res) => {
+    if (req.session.admin) return res.redirect("/admin/dashboard");
+    res.render("admin/admin-login", { message: "" });
+});
 app.post("/admin", (req, res) => {
     const { email, password } = req.body;
     if (email === "admin@example.com" && password === "admin@108") {
@@ -151,6 +154,7 @@ app.get("/admin/dashboard", (req, res) => { if (!req.session.admin) return res.r
 
 app.get("/admin/alumni/add", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); res.render("admin/add-alumni", { message: "" }); });
 app.post("/admin/alumni/add", async (req, res) => {
+    if (!req.session.admin) return res.redirect("/admin");
     const { alumni_name, email, password, batches } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     pool.query("SELECT email FROM alumni WHERE email = $1", [email], (err, result) => {
@@ -169,12 +173,15 @@ app.get("/admin/alumni/event", (req, res) => { if (!req.session.admin) return re
 app.post("/admin/alumni/event", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); const { title, type, date, time, location, description, seats, enrolled } = req.body; const enrolledValue = enrolled === "true"; pool.query("INSERT INTO events (title, type, date, time, location, description, seats, enrolled) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", [title, type, date, time, location, description, seats, enrolledValue], (err) => { if (err) return res.send("Error"); res.redirect("/admin/event/view"); }); });
 app.get("/admin/event/view", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); pool.query("SELECT * FROM events", (err, results) => { if (err) return res.send("Error"); res.render("admin/view-event", { events: results.rows }); }); });
 
-app.get("/admin/alumni/job", (req, res) => { res.render("admin/add-job", { message: null }); });
-app.post("/admin/alumni/job", (req, res) => { const { title, company, type, description, url } = req.body; pool.query("INSERT INTO jobs (title, company, type, description, url) VALUES ($1, $2, $3, $4, $5)", [title, company, type, description, url], (err) => { if (err) return res.render("admin/add-job", { message: "❌ Error" }); res.redirect("/admin/jobs"); }); });
-app.get("/admin/jobs", (req, res) => { pool.query("SELECT * FROM jobs", (err, results) => { if (err) return res.send("Error"); res.render("admin/view-job", { jobs: results.rows }); }); });
+app.get("/admin/alumni/job", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); res.render("admin/add-job", { message: null }); });
+app.post("/admin/alumni/job", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); const { title, company, type, description, url } = req.body; pool.query("INSERT INTO jobs (title, company, type, description, url) VALUES ($1, $2, $3, $4, $5)", [title, company, type, description, url], (err) => { if (err) return res.render("admin/add-job", { message: "❌ Error" }); res.redirect("/admin/jobs"); }); });
+app.get("/admin/jobs", (req, res) => { if (!req.session.admin) return res.redirect("/admin"); pool.query("SELECT * FROM jobs", (err, results) => { if (err) return res.send("Error"); res.render("admin/view-job", { jobs: results.rows }); }); });
 
 // Alumni Routes
-app.get("/alumni", (req, res) => res.render("alumni/alumni-login", { message: "" }));
+app.get("/alumni", (req, res) => {
+    if (req.session.alumni) return res.redirect("/alumni/dashboard");
+    res.render("alumni/alumni-login", { message: "" });
+});
 app.post("/alumni", async (req, res) => {
     const { email, password } = req.body;
     pool.query("SELECT * FROM alumni WHERE email = $1", [email], async (err, results) => {
@@ -191,11 +198,17 @@ app.get("/alumni/logout", (req, res) => { req.session.destroy(() => res.redirect
 app.get("/alumni/dashboard", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); pool.query("SELECT alumni_name, email, batches FROM alumni WHERE email = $1", [req.session.alumni.email], (err, results) => { if (err) return res.send("Error"); res.render("alumni/alumni-dashboard", { alumni: results.rows[0] }); }); });
 app.get("/view-events", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); pool.query("SELECT * FROM events", (err, results) => { if (err) return res.send("Error"); res.render("alumni/view-event", { events: results.rows }); }); });
 app.get("/view-job", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); pool.query("SELECT * FROM jobs", (err, results) => { if (err) return res.send("Error"); res.render("alumni/view-job", { jobs: results.rows }); }); });
-app.get("/alumni/batch", (req, res) => { const batch = req.query.batch || ""; let sql = "SELECT * FROM alumni"; let params = []; if (batch) { sql += " WHERE batches = $1"; params = [batch]; } pool.query(sql, params, (err, result) => { if (err) return res.send("Error"); res.render("alumni/alumni.ejs", { alumni: result.rows, selectedBatch: batch }); }); });
+app.get("/alumni/batch", (req, res) => { if (!req.session.alumni) return res.redirect("/alumni"); const batch = req.query.batch || ""; let sql = "SELECT * FROM alumni"; let params = []; if (batch) { sql += " WHERE batches = $1"; params = [batch]; } pool.query(sql, params, (err, result) => { if (err) return res.send("Error"); res.render("alumni/alumni.ejs", { alumni: result.rows, selectedBatch: batch }); }); });
 
 // Hackathon Routes
-app.get("/login", (req, res) => res.render("login.ejs", { loginMessage: "" }));
-app.get("/register", (req, res) => res.render("register.ejs", { message: "" }));
+app.get("/login", (req, res) => {
+    if (req.session.user) return res.redirect("/dashboard");
+    res.render("login.ejs", { loginMessage: "" });
+});
+app.get("/register", (req, res) => {
+    if (req.session.user) return res.redirect("/dashboard");
+    res.render("register.ejs", { message: "" });
+});
 app.post("/register", async (req, res) => {
     const { fullName, email, password, userType, graduationYear, department } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -220,9 +233,9 @@ app.get("/dashboard", (req, res) => { if (!req.session.user) return res.redirect
 app.get("/logout", (req, res) => { req.session.destroy(() => res.redirect("/login")); });
 
 // Other hackathon routes
-app.get("/mentor", (req, res) => res.render("mentor.ejs"));
-app.get("/opensource", (req, res) => res.render("opensource.ejs"));
-app.get("/donation", (req, res) => res.render("donation.ejs"));
-app.get("/ali", (req, res) => res.render("ali.ejs"));
+app.get("/mentor", (req, res) => { if (!req.session.user) return res.redirect("/login"); res.render("mentor.ejs"); });
+app.get("/opensource", (req, res) => { if (!req.session.user) return res.redirect("/login"); res.render("opensource.ejs"); });
+app.get("/donation", (req, res) => { if (!req.session.user) return res.redirect("/login"); res.render("donation.ejs"); });
+app.get("/ali", (req, res) => { if (!req.session.user) return res.redirect("/login"); res.render("ali.ejs"); });
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

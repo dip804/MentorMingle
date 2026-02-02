@@ -1,307 +1,305 @@
-<!DOCTYPE html>
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation page</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Donations - MentorMingle</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' rel='stylesheet'>
     <style>
-        /* General Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f0f2f5;
-            color: #333;
-            display: flex;
-            min-height: 100vh;
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        /* Sidebar Styles */
-        .sidebar {
-            width: 260px;
-            background: linear-gradient(180deg, #2a3f54, #1c2833);
+        .navbar {
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 10px;
-            min-height: 100vh;
-            position: sticky;
-            top: 0;
+            padding: 60px 0;
+            text-align: center;
         }
-
-        .sidebar h2 {
-            margin-bottom: 40px;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            width: 100%;
-        }
-
-        .sidebar ul li {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .sidebar ul li a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            color: #f5f5f5;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .sidebar ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateX(5px);
-        }
-
-        .sidebar ul li a i {
-            font-size: 1.2rem;
-        }
-
-        /* Content Styles */
-        .content {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .header {
-            background: linear-gradient(90deg, #8A2BE2, #4169E1);
-            color: white;
-            padding: 30px 40px;
+        .donation-card {
+            border: none;
             border-radius: 15px;
-            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background: white;
+            overflow: hidden;
         }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Donation Form Styles */
-        .donation-container {
-            background: #fff;
+        .card-body {
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
         }
-
-        .donation-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
-
         .amount-options {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-
         .amount-option {
-            background: #f0f0f0;
-            padding: 10px 20px;
-            border-radius: 8px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .amount-option.selected {
-            background-color: #20C997;
-            color: #fff;
+            text-align: center;
             font-weight: 600;
+            color: #495057;
         }
-
+        .amount-option:hover {
+            border-color: #6f42c1;
+            background: #f0f0ff;
+        }
+        .amount-option.selected {
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+            color: white;
+            border-color: #6f42c1;
+        }
         .payment-method {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: #f9f9f9;
-            padding: 12px 20px;
-            border-radius: 8px;
+            gap: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
             cursor: pointer;
             margin-bottom: 10px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
-
+        .payment-method:hover {
+            border-color: #6f42c1;
+            background: #f0f0ff;
+        }
         .payment-method.selected {
-            background-color: #20C997;
+            background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
             color: white;
+            border-color: #6f42c1;
         }
-
         .payment-icon {
             font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
         }
-
         .qr-code-container {
             text-align: center;
-            margin: 20px 0;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
-
         .qr-code-container img {
             width: 200px;
             height: 200px;
             border-radius: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #dee2e6;
+            margin: 15px 0;
         }
-
-        .donate-btn {
-            background: #20C997;
-            color: white;
+        .btn-donate {
+            background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             width: 100%;
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
         }
-
-        .donate-btn:hover {
-            background-color: #17a589;
+        .btn-donate:hover {
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+            transform: translateY(-2px);
         }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                flex-direction: row;
-                justify-content: space-around;
-                position: static;
-                padding: 20px 0;
-            }
-
-            .sidebar ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-
-            .donation-container {
-                width: 100%;
-                padding: 20px;
-            }
+        .btn-back {
+            background: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-back:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        .impact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6f42c1;
+            margin-bottom: 5px;
+        }
+        .impact-label {
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+        .form-control:focus {
+            border-color: #6f42c1;
+            box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="/alumni"><i class="fa-solid fa-users"></i> Batches</a></li>
-            <li><a href="/view-events"><i class="fa-solid fa-calendar-days"></i> Events</a></li>
-            <li><a href="/view-job"><i class="fa-solid fa-briefcase"></i> Jobs</a></li>
-            <li><a href="#Fourms"><i class="fa-solid fa-chart-line"></i> Forums</a></li>
-            <li><a href="/mentor"><i class="fa-solid fa-user-tie"></i> Mentorship</a></li>
-            <li><a href="/opensource"><i class="fa-solid fa-code-branch"></i> Open Source</a></li>
-            <li><a href="/donation"><i class="fa-solid fa-hand-holding-heart"></i> Donations</a></li>
-            <li><a href="logout.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-        </ul>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="content">
-        <!-- Page Header -->
-        <header class="header">
-            <h1>Mentorship Programs</h1>
-            <p>Connect with experienced mentors in various domains</p>
-        </header>
-
-        <!-- Donation Section -->
-        <div class="donation-container">
-            <h2>Make a Donation</h2>
-
-            <!-- Name Input -->
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Full Name">
+    <nav class='navbar navbar-expand-lg navbar-dark'>
+        <div class='container'>
+            <a class='navbar-brand fw-bold' href='/dashboard'>
+                <i class='fas fa-users-cog me-2'></i>MentorMingle
+            </a>
+            <div class='navbar-nav ms-auto'>
+                <a class='nav-link' href='/dashboard'><i class='fas fa-tachometer-alt me-1'></i>Dashboard</a>
+                <a class='nav-link' href='/mentor'><i class='fas fa-user-tie me-1'></i>Mentorship</a>
+                <a class='nav-link' href='/opensource'><i class='fas fa-code-branch me-1'></i>Open Source</a>
+                <a class='nav-link' href='/donation'><i class='fas fa-hand-holding-heart me-1'></i>Donations</a>
+                <a class='nav-link' href='/ali'><i class='fas fa-star me-1'></i>Ali</a>
+                <a class='nav-link' href='/logout'><i class='fas fa-sign-out-alt me-1'></i>Logout</a>
             </div>
-
-            <!-- Email Input -->
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email Address">
-            </div>
-
-            <!-- Amount Options -->
-            <div class="amount-options">
-                <div class="amount-option">$10</div>
-                <div class="amount-option">$50</div>
-                <div class="amount-option">$100</div>
-                <div class="amount-option">$500</div>
-            </div>
-
-            <!-- Custom Amount -->
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Or enter custom amount">
-            </div>
-
-            <!-- Payment Methods -->
-            <div class="payment-method"><i class="fab fa-paypal payment-icon"></i><span>PayPal</span></div>
-            <div class="payment-method"><i class="fas fa-credit-card payment-icon"></i><span>Credit/Debit Card</span></div>
-            <div class="payment-method"><i class="fas fa-university payment-icon"></i><span>Bank Transfer</span></div>
-            <div class="payment-method"><i class="fas fa-mobile-alt payment-icon"></i><span>UPI Payment</span></div>
-
-            <!-- QR Code Section -->
-            <div class="qr-code-container">
-                <p>Scan QR Code to Pay via UPI</p>
-                <img src="scanner.jpeg" alt="UPI QR Code">
-            </div>
-
-            <!-- Donate Button -->
-            <button class="donate-btn">Donate Now</button>
         </div>
-    </main>
+    </nav>
 
-    <!-- JavaScript to handle interaction -->
+    <div class='hero-section'>
+        <div class='container'>
+            <h1 class='display-4 fw-bold mb-3'>
+                <i class='fas fa-hand-holding-heart me-3'></i>Support Our Mission
+            </h1>
+            <p class='lead'>Your donations help us provide mentorship and learning opportunities to students worldwide</p>
+        </div>
+    </div>
+
+    <div class='container py-5'>
+        <!-- Impact Stats -->
+        <div class='row g-4 mb-5'>
+            <div class='col-lg-3 col-md-6'>
+                <div class='impact-card'>
+                    <div class='impact-number'>500+</div>
+                    <div class='impact-label'>Students Helped</div>
+                </div>
+            </div>
+            <div class='col-lg-3 col-md-6'>
+                <div class='impact-card'>
+                    <div class='impact-number'>50+</div>
+                    <div class='impact-label'>Mentors</div>
+                </div>
+            </div>
+            <div class='col-lg-3 col-md-6'>
+                <div class='impact-card'>
+                    <div class='impact-number'>100+</div>
+                    <div class='impact-label'>Projects</div>
+                </div>
+            </div>
+            <div class='col-lg-3 col-md-6'>
+                <div class='impact-card'>
+                    <div class='impact-number'>24/7</div>
+                    <div class='impact-label'>Support</div>
+                </div>
+            </div>
+        </div>
+
+        <div class='row justify-content-center'>
+            <div class='col-lg-8'>
+                <div class='donation-card'>
+                    <div class='card-body'>
+                        <h2 class='text-center mb-4 fw-bold' style='color: #2d3748;'>
+                            <i class='fas fa-heart text-danger me-2'></i>Make a Donation
+                        </h2>
+
+                        <!-- Name Input -->
+                        <div class='mb-3'>
+                            <label class='form-label fw-semibold'>Full Name</label>
+                            <input type='text' class='form-control' placeholder='Enter your full name' required>
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class='mb-3'>
+                            <label class='form-label fw-semibold'>Email Address</label>
+                            <input type='email' class='form-control' placeholder='Enter your email address' required>
+                        </div>
+
+                        <!-- Amount Options -->
+                        <div class='mb-3'>
+                            <label class='form-label fw-semibold'>Select Amount</label>
+                            <div class='amount-options'>
+                                <div class='amount-option' data-amount='10'></div>
+                                <div class='amount-option' data-amount='50'></div>
+                                <div class='amount-option' data-amount='100'></div>
+                                <div class='amount-option' data-amount='500'></div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Amount -->
+                        <div class='mb-4'>
+                            <label class='form-label fw-semibold'>Or Enter Custom Amount</label>
+                            <input type='number' class='form-control' placeholder='Enter amount in USD' min='1'>
+                        </div>
+
+                        <!-- Payment Methods -->
+                        <div class='mb-4'>
+                            <label class='form-label fw-semibold'>Payment Method</label>
+                            <div class='payment-method' data-method='paypal'>
+                                <i class='fab fa-paypal payment-icon'></i>
+                                <span>PayPal</span>
+                            </div>
+                            <div class='payment-method' data-method='card'>
+                                <i class='fas fa-credit-card payment-icon'></i>
+                                <span>Credit/Debit Card</span>
+                            </div>
+                            <div class='payment-method' data-method='bank'>
+                                <i class='fas fa-university payment-icon'></i>
+                                <span>Bank Transfer</span>
+                            </div>
+                            <div class='payment-method' data-method='upi'>
+                                <i class='fas fa-mobile-alt payment-icon'></i>
+                                <span>UPI Payment</span>
+                            </div>
+                        </div>
+
+                        <!-- QR Code Section -->
+                        <div class='qr-code-container d-none' id='qr-section'>
+                            <h5 class='mb-3'>Scan QR Code to Pay via UPI</h5>
+                            <img src='https://via.placeholder.com/200x200?text=UPI+QR+Code' alt='UPI QR Code'>
+                            <p class='text-muted mt-2'>Scan with any UPI app to complete payment</p>
+                        </div>
+
+                        <!-- Donate Button -->
+                        <button class='btn btn-donate' onclick='processDonation()'>
+                            <i class='fas fa-heart me-2'></i>Donate Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='text-center mt-5'>
+            <a href='/dashboard' class='btn btn-back'>
+                <i class='fas fa-arrow-left me-2'></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const amountOptions = document.querySelectorAll('.amount-option');
             const paymentMethods = document.querySelectorAll('.payment-method');
+            const qrSection = document.getElementById('qr-section');
 
             // Amount selection logic
             amountOptions.forEach(option => {
@@ -316,10 +314,20 @@
                 method.addEventListener('click', () => {
                     paymentMethods.forEach(m => m.classList.remove('selected'));
                     method.classList.add('selected');
+
+                    // Show QR code for UPI
+                    if (method.dataset.method === 'upi') {
+                        qrSection.classList.remove('d-none');
+                    } else {
+                        qrSection.classList.add('d-none');
+                    }
                 });
             });
         });
+
+        function processDonation() {
+            alert('Thank you for your generous donation! Your support helps us continue our mission to provide quality education and mentorship to students worldwide.');
+        }
     </script>
 </body>
-
 </html>

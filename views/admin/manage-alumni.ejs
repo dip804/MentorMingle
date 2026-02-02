@@ -3,166 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Therapy</title>
+    <title>Manage Alumni - MentorMingle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-}
-
-/* Body Background */
-body {
-    background: #2a3f54;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Dashboard Container */
-.dashboard-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-/* Card Design */
-.dashboard-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    width: 500px;
-    text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* Card Hover Effect */
-.dashboard-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Heading Animation */
-h2 {
-    color: #333;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease-in-out;
-}
-
-/* Styled Table */
-.styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-/* Table Header */
-.styled-table thead {
-    background: #007BFF;
-    color: white;
-}
-
-/* Table Cells */
-.styled-table th, .styled-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Table Row Hover */
-.styled-table tr:hover {
-    background-color: #f2f2f2;
-}
-
-/* Delete Button */
-.delete-btn {
-    background: #e74c3c;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-/* Delete Button Hover */
-.delete-btn:hover {
-    background: #c0392b;
-    transform: scale(1.05);
-}
-
-/* Back Button */
-.back-btn {
-    display: inline-block;
-    margin-top: 20px;
-    background: #3498db;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
-}
-
-/* Back Button Hover */
-.back-btn:hover {
-    background: #2980b9;
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .content-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+        .card-header-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table thead th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        .btn-delete {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .btn-delete:hover {
+            background: linear-gradient(135deg, #c82333 0%, #a02622 100%);
+            transform: translateY(-1px);
+        }
+        .btn-back {
+            background: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-back:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
     </style>
-    
-    </head>
+</head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/admin/dashboard">
+                <i class="fas fa-user-shield me-2"></i>MentorMingle Admin
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/admin/dashboard"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
+                <a class="nav-link" href="/admin/logout"><i class="fas fa-sign-out-alt me-1"></i>Logout</a>
+            </div>
+        </div>
+    </nav>
 
-    <div class="dashboard-container">
-        <div class="dashboard-card">
-            <h2 class="fade-in">🛠 Manage Alumni</h2>
-    
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>Alumni Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% alumni.forEach(function(alumni) { %>
-                        <tr id="alumni-<%= alumni.id %>">
-                            <td><%= alumni.alumni_name %></td>
-                            <td><%= alumni.email %></td>
-                            <td>
-                                <button class="delete-btn" onclick="confirmDelete('<%= alumni.id %>', '<%= alumni.alumni_name %>')">❌ Delete</button>
-                            </td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-    
-            <a href="/admin/dashboard" class="back-btn">⬅️ Back to Dashboard</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="content-card">
+                    <div class="card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-users-cog me-2"></i>Manage Alumni</h3>
+                    </div>
+                    <div class="card-body">
+                        <% if (alumni && alumni.length > 0) { %>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th><i class="fas fa-user me-1"></i>Name</th>
+                                            <th><i class="fas fa-envelope me-1"></i>Email</th>
+                                            <th><i class="fas fa-graduation-cap me-1"></i>Batch</th>
+                                            <th><i class="fas fa-cogs me-1"></i>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% alumni.forEach(function(alumnus) { %>
+                                            <tr id="alumni-<%= alumnus.id %>">
+                                                <td><%= alumnus.alumni_name %></td>
+                                                <td><%= alumnus.email %></td>
+                                                <td><%= alumnus.batches %></td>
+                                                <td>
+                                                    <button class="btn btn-delete btn-sm" onclick="confirmDelete('<%= alumnus.id %>', '<%= alumnus.alumni_name %>')">
+                                                        <i class="fas fa-trash me-1"></i>Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <i class="fas fa-users fa-3x mb-3 text-muted"></i>
+                                <h4>No Alumni Found</h4>
+                                <p>There are currently no alumni registered in the system.</p>
+                            </div>
+                        <% } %>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a href="/admin/dashboard" class="btn btn-back">
+                                <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function confirmDelete(alumniId, alumniName) {
-            if (confirm(`Are you sure you want to delete "${alumniName}"?`)) {
+            if (confirm(`Are you sure you want to delete "${alumniName}"? This action cannot be undone.`)) {
                 fetch('/admin/alumni/delete', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -171,17 +161,22 @@ h2 {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert(`${alumniName} deleted successfully!`);
+                        alert(`${alumniName} has been deleted successfully!`);
                         document.getElementById(`alumni-${alumniId}`).remove();
+                        // Reload page if no alumni left
+                        if (document.querySelectorAll('tbody tr').length === 1) {
+                            location.reload();
+                        }
                     } else {
-                        alert("Failed to delete alumni.");
+                        alert("Failed to delete alumni. Please try again.");
                     }
                 })
-                .catch(error => console.error("Error:", error));
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred while deleting the alumni.");
+                });
             }
         }
     </script>
-    
-
 </body>
 </html>

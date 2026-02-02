@@ -3,47 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Events</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Add Event - MentorMingle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+        .form-body {
+            padding: 40px;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-back {
+            background: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-back:hover {
+            background: #5a6268;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>Add events</h2>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/admin/dashboard">
+                <i class="fas fa-user-shield me-2"></i>MentorMingle Admin
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/admin/dashboard"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
+                <a class="nav-link" href="/admin/logout"><i class="fas fa-sign-out-alt me-1"></i>Logout</a>
+            </div>
+        </div>
+    </nav>
 
-    <% if (message) { %>
-        <p style="color: red;"><%= message %></p>
-    <% } %>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h3 class="mb-0"><i class="fas fa-calendar-plus me-2"></i>Add New Event</h3>
+                    </div>
+                    <div class="form-body">
+                        <% if (message) { %>
+                            <div class="alert alert-danger" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i><%= message %>
+                            </div>
+                        <% } %>
 
-    <form action="/admin/alumni/event" method="POST">
-        <label for="title">Title:</label>
-        <input type="text" name="title" required>
+                        <form action="/admin/alumni/event" method="POST">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="title" class="form-label fw-bold">
+                                        <i class="fas fa-heading me-1"></i>Event Title
+                                    </label>
+                                    <input type="text" class="form-control" id="title" name="title" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="type" class="form-label fw-bold">
+                                        <i class="fas fa-tag me-1"></i>Event Type
+                                    </label>
+                                    <input type="text" class="form-control" id="type" name="type" placeholder="e.g., Workshop, Seminar" required>
+                                </div>
+                            </div>
 
-        <label for="type">Type:</label>
-        <input type="text" name="type" required>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="date" class="form-label fw-bold">
+                                        <i class="fas fa-calendar me-1"></i>Event Date
+                                    </label>
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="time" class="form-label fw-bold">
+                                        <i class="fas fa-clock me-1"></i>Event Time
+                                    </label>
+                                    <input type="time" class="form-control" id="time" name="time" required>
+                                </div>
+                            </div>
 
-        <label for="date">Date:</label>
-        <input type="date" name="date" required>
+                            <div class="mb-3">
+                                <label for="location" class="form-label fw-bold">
+                                    <i class="fas fa-map-marker-alt me-1"></i>Location
+                                </label>
+                                <input type="text" class="form-control" id="location" name="location" placeholder="Venue address" required>
+                            </div>
 
-        <label for="time">Time:</label>
-        <input type="text" name="time" required>
+                            <div class="mb-3">
+                                <label for="description" class="form-label fw-bold">
+                                    <i class="fas fa-align-left me-1"></i>Description
+                                </label>
+                                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Detailed event description" required></textarea>
+                            </div>
 
-        <label for="location">Location:</label>
-        <input type="text" name="location" required>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="seats" class="form-label fw-bold">
+                                        <i class="fas fa-users me-1"></i>Available Seats
+                                    </label>
+                                    <input type="number" class="form-control" id="seats" name="seats" min="1" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="enrolled" class="form-label fw-bold">
+                                        <i class="fas fa-check-circle me-1"></i>Enrollment Required
+                                    </label>
+                                    <select class="form-control" id="enrolled" name="enrolled">
+                                        <option value="false">No</option>
+                                        <option value="true">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        <label for="description">Description:</label>
-        <textarea name="description" required></textarea>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <a href="/admin/dashboard" class="btn btn-back me-md-2">
+                                    <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                                </a>
+                                <button type="submit" class="btn btn-submit">
+                                    <i class="fas fa-plus me-1"></i>Add Event
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <label for="seats">Seats:</label>
-        <input type="number" name="seats" required>
-
-        <label for="enrolled">Enrolled:</label>
-        <select name="enrolled">
-            <option value="false">No</option>
-            <option value="true">Yes</option>
-        </select>
-
-        <button type="submit">Add Event</button>
-    </form>
-
-    <a href="/admin/dashboard">Back to Dashboard</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
